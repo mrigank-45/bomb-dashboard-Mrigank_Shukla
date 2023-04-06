@@ -59,69 +59,71 @@ const Dashboard = () => {
 
 
     return (
-        <div>
+        <div className={styles.outerDiv}>
             <BackgroundImage />
-            <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-                Dashboard
-            </Typography>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Card  >
-                    <CardContent align="center">
-                        <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>Current Epoch</Typography>
-                        <Typography>{Number(currentEpoch)}</Typography>
-                    </CardContent>
-                </Card>
-                <Card  >
-                    <CardContent style={{ textAlign: 'center' }}>
-                        <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>Next Epoch</Typography>
-                        <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
-                    </CardContent>
-                </Card>
-                <Card  >
-                    <CardContent align="center">
-                        <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>
-                            Live TWAP
-                        </Typography>
-                        <Typography>{scalingFactor} BTC</Typography>
-                        <Typography>
-                            <small>per 10,000 BOMB</small>
-                        </Typography>
-                    </CardContent>
-                </Card>
-                <Card style={{ 'paddingTop': '10px' }}>
-                    <CardContent align="center">
-                        <h2>TVL</h2>
-                        <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" />
-                    </CardContent>
-                </Card>
-                <Card style={{ 'paddingTop': '10px' }}>
-                    <CardContent align="center">
-                        <h2>Last Epoch TWAP</h2>
-                        {bondScale}
-                    </CardContent>
-                </Card>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Home page all stats = bomb finance summary Done
 
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Latest news Done
+            <div className={styles.card1}>
+                <div className={styles.headingCard1}>
+                    Bomb Finance Summary
+                </div>
+                <hr className={styles.line} />
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div className={styles.card11}>
+                        Table
 
+                    </div>
+
+                    <div className={styles.card12}>
+                        <div className={styles.textalign} style={{ fontSize: "18px" }}>
+                            <Typography style={{ fontSize: "22px" }}>Current Epoch</Typography>
+                            <Typography style={{ fontSize: "26px" }}>{Number(currentEpoch)}</Typography>
+                        </div>
+                        <hr />
+                        <div className={styles.textalign} >
+                            <span style={{ fontSize: "26px" }}> <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" /></span>
+
+                            <Typography style={{ fontSize: "22px" }}>Next Epoch in</Typography>
+
+                        </div>
+                        <hr />
+                        <div className={styles.textalign} >
+                            <div style={{ fontSize: "14px", margin: "2px" }}>
+                                <span style={{ color: "#FFFFFF" }}>Live TWAP: <span className={styles.text}> {scalingFactor} BTC</span></span>
+                            </div>
+                            <div style={{ fontSize: "14px", margin: "2px" }}>
+                                <span style={{ color: "#FFFFFF" }}>TVL: <span className={styles.text}><CountUp className={styles.text} end={TVL} separator="," prefix="$" /></span> </span>
+
+                            </div>
+                            <div style={{ fontSize: "14px", margin: "2px" }}>
+                                {/* *******************TO BE DONE************ */}
+                                <span style={{ color: "#FFFFFF" }}>Last Epoch TWAP:  </span>  <span className={styles.text} >{scalingFactor} BTC</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Boardroom Done in boardroom
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Bomb farms Done in /farms
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Bbomb yet to be done, in home page and in farm cards.
-            </div>
-            <div className={styles.card}>
-                Bbomb yet to be done, in home page and in farm cards.
+            <div className={styles.card2}>
+                <div className={styles.card21}>
+                    <a href="">Read Investment Strategy</a>
+                    <button></button>
+                    <div>
+                        <button></button>
+                        <button></button>
+                    </div>
+
+
+                </div>
+                <div className={styles.card}>
+                    <span>Latest News</span>
+
+                </div>
+
+
             </div>
         </div>
+
     );
 };
 
