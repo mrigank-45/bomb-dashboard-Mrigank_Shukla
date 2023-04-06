@@ -14,7 +14,7 @@ import newTheme from './newTheme';
 import config from './config';
 import Updaters from './state/Updaters';
 import Loader from './components/Loader';
-import Popups from './components/Popups';
+import Popups from './components/Popups'; 
 import useChainId from './hooks/useChainId';
 //import Regulations from './views/Regulations/Regulations';
 import {RefreshContextProvider} from './contexts/RefreshContext';
@@ -22,6 +22,7 @@ import {RefreshContextProvider} from './contexts/RefreshContext';
 const Home = lazy(() => import('./views/Home'));
 const Farm = lazy(() => import('./views/Farm'));
 const Boardroom = lazy(() => import('./views/Boardroom'));
+const Dashboard = lazy(() => import('./views/Dashboard/dashboard'));
 const Bond = lazy(() => import('./views/Bond'));
 const Xbomb = lazy(() => import('./views/Stake'));
 const Supply = lazy(() => import('./views/Supply'));
@@ -51,12 +52,15 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/">
               <Home />
-            </Route>
+            </Route> 
             <Route path="/farm">
               <Farm />
             </Route>
             <Route path="/boardroom">
               <Boardroom />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard/>
             </Route>
             <Route path="/bond">
               <Bond />
