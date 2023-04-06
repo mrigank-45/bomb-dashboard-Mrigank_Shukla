@@ -104,26 +104,252 @@ const Dashboard = () => {
 
                 </div>
             </div>
-            <div className={styles.card2}>
-                <div className={styles.card21}>
-                    <a href="">Read Investment Strategy</a>
-                    <button></button>
+            <div className={styles.card2} style={{ display: "flex", flexDirection: "row" }}>
+                <div className={styles.card21} style={{ display: "flex", flexDirection: "column" }}>
+                    <a href="" className={styles.link}>Read Investment Strategy <img style={{ marginLeft: "5px" }} src="/arrow.png" alt="" /></a>
+                    <button className={styles.investBtn}> <span style={{ color: "white", fontSize: "24px" }}> Invest Now </span></button>
+                    <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                        <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/discord.png" alt="" /> <span className={styles.heading2} >Chat on Discord</span> </button>
+                        <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/docs.png" alt="" /> <span className={styles.heading2}>Read Docs</span>  </button>
+                    </div>
+                    <div className={styles.boardRoom} style={{ display: "flex", flexDirection: "column" }}>
+                        <div className={styles.boardRoomDiv1} style={{ display: "flex", flexDirection: "row" }}>
+                            <div className={styles.shareImg}>
+                                <img src="/bshares.png" alt="" />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                    <div className={styles.textt}>BoardRoom</div>
+                                    <div className={styles.imgDiv}>
+                                        <img style={{ height: "18px" }} src="/recommend.png" alt="" />
+                                    </div>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                    <div className={styles.ttext}>
+                                        Stake BSHARE and earn BOMB every epoch
+                                    </div>
+                                    <div style={{ marginLeft: "194px" }}>
+                                        TVL: $1,008,430
+                                    </div>
+                                </div>
+                                <hr style={{ width: "100%" }} />
+                            </div>
+                        </div>
+
+                        <div className={styles.boardRoomDiv2}>
+                            <div style={{ paddingLeft: "79%", marginTop: "25px" }}>Total Staked:7232</div>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                    <div>
+                                        Daily Returns
+                                    </div>
+                                    <div>
+                                        2 %
+                                    </div>
+                                </div>
+                                <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                    <div>
+                                        Your Stake
+                                    </div>
+                                    <div>
+                                        6.0000
+                                    </div>
+                                    <div>
+                                        ≈ $1171.62
+                                    </div>
+                                </div>
+                                <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                    <div>
+                                        Earned:
+                                    </div>
+                                    <div>
+                                        6.0000
+                                    </div>
+                                    <div>
+                                        ≈ $1171.62
+                                    </div>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
+                                    <div style={{ display: "flex", flexDirection: "row" }}>
+                                        <button className={styles.p1_btn}>
+                                            Deposit
+                                        </button>
+                                        <button className={styles.p1_btn} style={{ marginLeft: "30px" }}>
+                                            Withdraw
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button className={styles.p2_btn}>
+                                            Claim Rewards
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.cardNews}>
+                    <div className={styles.news} > Latest News </div>
+                </div>
+            </div>
+            <div className={styles.card3} style={{ display: "flex", flexDirection: "column" }}>
+
+                <div className={styles.boardRoom} style={{ display: "flex", flexDirection: "column" }}>
                     <div>
-                        <button></button>
-                        <button></button>
+                        Bomb Farms
+                    </div>
+                    <div className={styles.boardRoomDiv1} style={{ display: "flex", flexDirection: "row" }}>
+                        <div className={styles.shareImg}>
+                            <img src="/bshares.png" alt="" />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.textt}>BoardRoom</div>
+                                <div className={styles.imgDiv}>
+                                    <img style={{ height: "18px" }} src="/recommend.png" alt="" />
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.ttext}>
+                                    Stake BSHARE and earn BOMB every epoch
+                                </div>
+                                <div style={{ marginLeft: "194px" }}>
+                                    TVL: $1,008,430
+                                </div>
+                            </div>
+                            <hr style={{ width: "100%" }} />
+                        </div>
                     </div>
 
-
+                    <div className={styles.boardRoomDiv2}>
+                        <div style={{ paddingLeft: "79%", marginTop: "25px" }}>Total Staked:7232</div>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Daily Returns
+                                </div>
+                                <div>
+                                    2 %
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Your Stake
+                                </div>
+                                <div>
+                                    6.0000
+                                </div>
+                                <div>
+                                    ≈ $1171.62
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Earned:
+                                </div>
+                                <div>
+                                    6.0000
+                                </div>
+                                <div>
+                                    ≈ $1171.62
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                    <button className={styles.p1_btn}>
+                                        Deposit
+                                    </button>
+                                    <button className={styles.p1_btn} style={{ marginLeft: "30px" }}>
+                                        Withdraw
+                                    </button>
+                                </div>
+                                <div>
+                                    <button className={styles.p2_btn}>
+                                        Claim Rewards
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.card}>
-                    <span>Latest News</span>
+                <div className={styles.boardRoom} style={{ display: "flex", flexDirection: "column" }}>
+                    <div className={styles.boardRoomDiv1} style={{ display: "flex", flexDirection: "row" }}>
+                        <div className={styles.shareImg}>
+                            <img src="/bshares.png" alt="" />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.textt}>BoardRoom</div>
+                                <div className={styles.imgDiv}>
+                                    <img style={{ height: "18px" }} src="/recommend.png" alt="" />
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.ttext}>
+                                    Stake BSHARE and earn BOMB every epoch
+                                </div>
+                                <div style={{ marginLeft: "194px" }}>
+                                    TVL: $1,008,430
+                                </div>
+                            </div>
+                            <hr style={{ width: "100%" }} />
+                        </div>
+                    </div>
 
+                    <div className={styles.boardRoomDiv2}>
+                        <div style={{ paddingLeft: "79%", marginTop: "25px" }}>Total Staked:7232</div>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Daily Returns
+                                </div>
+                                <div>
+                                    2 %
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Your Stake
+                                </div>
+                                <div>
+                                    6.0000
+                                </div>
+                                <div>
+                                    ≈ $1171.62
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Earned:
+                                </div>
+                                <div>
+                                    6.0000
+                                </div>
+                                <div>
+                                    ≈ $1171.62
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                    <button className={styles.p1_btn}>
+                                        Deposit
+                                    </button>
+                                    <button className={styles.p1_btn} style={{ marginLeft: "30px" }}>
+                                        Withdraw
+                                    </button>
+                                </div>
+                                <div>
+                                    <button className={styles.p2_btn}>
+                                        Claim Rewards
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
 
             </div>
         </div>
-
     );
 };
 

@@ -8,8 +8,6 @@
 
 .line {
     width: 90%;
-    /* color: #C3C5CB;
-    background-color: #c3c5cb; */
 }
 
 .textalign {
@@ -21,9 +19,7 @@
 }
 
 .card1 {
-
     box-sizing: border-box;
-     
     width: 90%;
     height: 291px;
     background: rgba(35, 40, 75, 0.75);
@@ -31,9 +27,7 @@
     border-radius: 10px;
     color: white;
     margin-top: 1%;
-    /* margin-left: 10%; */
 }
-
 
 .headingCard1 {
     text-align: center;
@@ -52,11 +46,10 @@
     margin-left: 40%;
 }
 
-.card {
+.cardNews {
     box-sizing: border-box;
-     
-    width: 382px;
-    height: 336px;
+    width: 467px;
+    height: 361px;
     background: rgba(35, 40, 75, 0.75);
     border: 1px solid #728CDF;
     backdrop-filter: blur(5px);
@@ -66,10 +59,160 @@
 
 .card2 {
     box-sizing: border-box;
-     
+
     width: 90%;
-    height: 300px;
+    /* height: 300px; */
     color: white;
     margin-top: 1%;
     /* margin-left: 10%; */
+}
+
+.card21 {
+    width: 62%;
+}
+
+.news {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.link {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    font-feature-settings: 'liga' off;
+    color: #9EE6FF;
+    /* float: right; */
+    margin-bottom: 15px;
+    padding-right: 33px;
+    margin-top: 5px;
+    padding-left: 70.5%;
+}
+
+.investBtn {
+    box-sizing: border-box;
+    width: 730px;
+    height: 40px;
+    background: radial-gradient(59345.13% 4094144349.28% at 39511.5% -2722397851.45%, rgba(0, 245, 171, 0.5) 0%, rgba(0, 173, 232, 0.5) 100%);
+    /* border: 0.5px solid #E41A1A; */
+    border: 0.5px solid blue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.btn2 {
+    box-sizing: border-box;
+    width: 44.5%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #728CDF;
+    backdrop-filter: blur(12.5px);
+    margin-right: 5.5%;
+
+}
+
+.heading2 {
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 18px;
+    align-items: center;
+    font-feature-settings: 'liga' off;
+    color: #000000;
+}
+
+.boardRoom {
+    box-sizing: border-box;
+    width: 96%;
+    height: 220px;
+    padding-top: 26px;
+    background: rgba(35, 40, 75, 0.75);
+    border: 1px solid #728CDF;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    color: white;
+
+}
+
+.boardRoomDiv1 {
+    height: 30%;
+    width: 100%;
+
+}
+
+.boardRoomDiv2 {
+    height: 70%;
+    color: white;
+}
+
+.textt {
+    width: 115px;
+    height: 30px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-top: 9px;
+}
+
+.imgDiv {
+    padding: 12px;
+}
+
+.ttext {
+    color: #FFFFFF;
+}
+
+.shareImg {
+    padding: 10px;
+
+}
+
+.smallDiv {
+    margin: 10px;
+    margin-left: 32px;
+}
+
+.p1_btn {
+    background: rgba(35, 40, 75, 0.75);
+    border: 1px solid white;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    color: white;
+    width: 121px;
+    height: 27px;
+}
+
+.p2_btn {
+    background: rgba(35, 40, 75, 0.75);
+    border: 1px solid white;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    color: white;
+    width: 273px;
+    height: 27px;
+    margin-top: 12px;
+}
+
+.div4 {
+    padding-top: 10px;
+    margin-left: 40px;
+}
+
+.card3 {
+    /* box-sizing: border-box;
+    width: 90%;
+    height: 361px;
+    background: rgba(35, 40, 75, 0.75);
+    border: 1px solid #728CDF;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    color: white; */
+    margin-top: 20px;
 }
