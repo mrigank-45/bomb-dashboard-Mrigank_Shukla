@@ -1,0 +1,167 @@
+import React, { useMemo } from 'react';
+import { Box, Button, Card, CardContent, Typography } from '@material-ui/core';
+import useClaimRewardCheck from '../../../hooks/boardroom/useClaimRewardCheck';
+import useHarvestFromBoardroom from '../../../hooks/useHarvestFromBoardroom';
+import useEarningsOnBoardroom from '../../../hooks/useEarningsOnBoardroom';
+import useBombStats from '../../../hooks/useBombStats';
+import { getDisplayBalance } from '../../../utils/formatBalance';
+import useApprove, { ApprovalState } from '../../../hooks/useApprove';
+import useModal from '../../../hooks/useModal';
+import useTokenBalance from '../../../hooks/useTokenBalance';
+import useWithdrawCheck from '../../../hooks/boardroom/useWithdrawCheck';
+import DepositModal from '../../Bank/components/DepositModal';
+import WithdrawModal from '../../Bank/components/WithdrawModal';
+import useBombFinance from '../../../hooks/useBombFinance';
+import useStakedBalanceOnBoardroom from '../../../hooks/useStakedBalanceOnBoardroom';
+import useStakeToBoardroom from '../../../hooks/useStakeToBoardroom';
+import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
+import useRedeemOnBoardroom from '../../../hooks/useRedeemOnBoardroom';
+import styles from '../dashboard.module.css'
+import { AddIcon, RemoveIcon } from '../../../components/icons';
+import IconButton from '../../../components/IconButton';
+
+const Boardroom_news = () => {
+    const stakedBalance = useStakedBalanceOnBoardroom();
+    const bombStats = useBombStats();
+    const earnings = useEarningsOnBoardroom();
+    const canClaimReward = useClaimRewardCheck();
+    const tokenPriceInDollars = useMemo(
+        () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
+        [bombStats],
+    );
+    const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+    const { onRedeem } = useRedeemOnBoardroom();
+    const canWithdraw = useWithdrawCheck();
+    const { onReward } = useHarvestFromBoardroom();
+    const bombFinance = useBombFinance();
+    const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
+    const tokenBalance = useTokenBalance(bombFinance.BSHARE);
+    const { onStake } = useStakeToBoardroom();
+    const { onWithdraw } = useWithdrawFromBoardroom();
+    const canWithdrawFromBoardroom = useWithdrawCheck();
+
+    const [onPresentDeposit, onDismissDeposit] = useModal(
+        <DepositModal
+            max={tokenBalance}
+            onConfirm={(value) => {
+                onStake(value);
+                onDismissDeposit();
+            }}
+            tokenName={'BShare'}
+        />,
+    );
+
+    const [onPresentWithdraw, onDismissWithdraw] = useModal(
+        <WithdrawModal
+            max={stakedBalance}
+            onConfirm={(value) => {
+                onWithdraw(value);
+                onDismissWithdraw();
+            }}
+            tokenName={'BShare'}
+        />,
+    );
+
+    return (
+        <div className={styles.card2} style={{ display: "flex", flexDirection: "row" }}>
+            <div className={styles.card21} style={{ display: "flex", flexDirection: "column" }}>
+                <a href="" className={styles.link}>Read Investment Strategy <img style={{ marginLeft: "5px" }} src="/arrow.png" alt="" /></a>
+                <button className={styles.investBtn}> <span style={{ color: "white", fontSize: "24px" }}> Invest Now </span></button>
+                <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/discord.png" alt="" /> <span className={styles.heading2} >Chat on Discord</span> </button>
+                    <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/docs.png" alt="" /> <span className={styles.heading2}>Read Docs</span>  </button>
+                </div>
+                <div className={styles.boardRoom} style={{ display: "flex", flexDirection: "column" }}>
+                    <div className={styles.boardRoomDiv1} style={{ display: "flex", flexDirection: "row" }}>
+                        <div className={styles.shareImg}>
+                            <img src="/bshares.png" alt="" />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.textt}>BoardRoom</div>
+                                <div className={styles.imgDiv}>
+                                    <img style={{ height: "18px" }} src="/recommend.png" alt="" />
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div className={styles.ttext}>
+                                    Stake BSHARE and earn BOMB every epoch
+                                </div>
+                                <div style={{ marginLeft: "194px" }}>
+                                    TVL: $1,008,430    {/* *******************TO BE DONE************ */}
+                                </div>
+                            </div>
+                            <hr style={{ width: "100%" }} />
+                        </div>
+                    </div>
+
+                    <div className={styles.boardRoomDiv2}>
+                        <div style={{ paddingLeft: "79%", marginTop: "25px" }}>Total Staked:7232</div> {/* *******************TO BE DONE************ */}
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Daily Returns                       {/* *******************TO BE DONE************ */}
+                                </div>
+                                <div>
+                                    2 %
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Your Stake
+                                </div>
+                                <div>
+                                    {getDisplayBalance(stakedBalance)}
+                                </div>
+                                <div>
+                                    {`≈ $${tokenPriceInDollars}`}
+                                </div>
+                            </div>
+                            <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
+                                <div>
+                                    Earned:
+                                </div>
+                                <div>
+                                    {getDisplayBalance(earnings)}
+                                </div>
+                                <div>
+                                    {`≈ $${earnedInDollars}`}
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                    <button
+                                        onClick={onPresentDeposit}
+                                        disabled={approveStatus !== ApprovalState.APPROVED}
+                                        className={styles.p1_btn}>
+                                        Deposit
+                                    </button>
+
+                                    <button
+                                        disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
+                                        onClick={onRedeem}
+                                        className={styles.p1_btn} style={{ marginLeft: "30px" }}>
+                                        Withdraw
+                                    </button>
+                                </div>
+                                <div>
+                                    <button
+                                        onClick={onReward}
+                                        disabled={earnings.eq(0) || !canClaimReward}
+                                        className={styles.p2_btn}>
+                                        Claim Rewards
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.cardNews}>
+                <div className={styles.news} > Latest News </div>
+            </div>
+        </div>
+    );
+};
+
+export default Boardroom_news;

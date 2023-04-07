@@ -38,6 +38,7 @@
 .card11 {
     width: 40%;
     margin-left: 5%;
+    margin-top: 22px;
 }
 
 .card12 {
@@ -172,6 +173,11 @@
 .shareImg {
     padding: 10px;
 
+}
+
+.lightText{
+    font-size: 10px;
+    margin-left: 43px;
 }
 
 .smallDiv {
