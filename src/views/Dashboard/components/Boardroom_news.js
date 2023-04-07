@@ -10,6 +10,7 @@ import useModal from '../../../hooks/useModal';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useWithdrawCheck from '../../../hooks/boardroom/useWithdrawCheck';
 import DepositModal from '../../Bank/components/DepositModal';
+import CountUp from 'react-countup';
 import WithdrawModal from '../../Bank/components/WithdrawModal';
 import useBombFinance from '../../../hooks/useBombFinance';
 import useStakedBalanceOnBoardroom from '../../../hooks/useStakedBalanceOnBoardroom';
@@ -20,8 +21,10 @@ import styles from '../dashboard.module.css'
 import useTotalStakedOnBoardroom from '../../../hooks/useTotalStakedOnBoardroom';
 import useFetchBoardroomAPR from '../../../hooks/useFetchBoardroomAPR';
 import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
+import useTotalValueLocked from '../../../hooks/useTotalValueLocked';
 
 const Boardroom_news = () => {
+    const TVL = useTotalValueLocked();
     const stakedBalance = useStakedBalanceOnBoardroom();
     const bombStats = useBombStats();
     const earnings = useEarningsOnBoardroom();
@@ -99,7 +102,7 @@ const Boardroom_news = () => {
                                     Stake BSHARE and earn BOMB every epoch
                                 </div>
                                 <div style={{ marginLeft: "194px" }}>
-                                    TVL: $1,008,430
+                                    TVL: <span className={styles.text}><CountUp className={styles.text} end={TVL} separator="," prefix="$" /></span> 
                                 </div>
                             </div>
                             <hr style={{ width: "100%" }} />

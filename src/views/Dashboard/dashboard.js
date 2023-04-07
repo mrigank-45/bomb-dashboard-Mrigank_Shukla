@@ -7,6 +7,7 @@ import Boardroom_news from './components/Boardroom_news';
 import Bomb_farms from './components/Bomb_farms';
 import Bbond from './components/Bbond.tsx';
 import HomeImage from '../../assets/img/background.jpg';
+import Loader from '../../components/Loader';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
@@ -14,18 +15,21 @@ const BackgroundImage = createGlobalStyle`
     background-color: #171923;
   }
 `;
- 
+
 const Dashboard = () => {
 
 
     return (
-        <div className={styles.outerDiv}>
-            <BackgroundImage />
-            <Bomb_finance />   
-            <Boardroom_news />
-            <Bomb_farms/>
-            <Bbond/>
-        </div>
+        <>
+                <div className={styles.outerDiv}>
+                    <BackgroundImage />
+                    <Bomb_finance />
+                    <Boardroom_news />
+                    <Bomb_farms />
+                    <Bbond />
+                </div>
+            
+        </>
     );
 };
 
