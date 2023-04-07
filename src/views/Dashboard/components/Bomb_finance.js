@@ -58,7 +58,12 @@ const Bomb_finance = () => {
         [tBondStats],
     );
     const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
-
+    const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(4) : null), [bombStats]);
+    const tBondPriceInBNB = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
+    const bSharePriceInBNB = useMemo(
+        () => (bShareStats ? Number(bShareStats.tokenInFtm).toFixed(4) : null),
+        [bShareStats],
+      );
     return (
 
         <div className={styles.card1}>
@@ -70,8 +75,8 @@ const Bomb_finance = () => {
                 <div className={styles.card11}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <div className={styles.lightText} style={{ marginLeft: "104px" }}>Current Supply</div>
-                        <div className={styles.lightText} style={{ marginLeft: "8px" }}>Total Supply</div>
-                        <div className={styles.lightText} style={{ marginLeft: "18px" }}> Price</div>
+                        <div className={styles.lightText} style={{ marginLeft: "20px" }}>Total Supply</div>
+                        <div className={styles.lightText} style={{ marginLeft: "23px" }}> Price</div>
                     </div>
                     <hr style={{ width: "75%", marginLeft: "25%" }} />
                     <div style={{ display: "flex", flexDirection: "row" }}>
@@ -79,7 +84,7 @@ const Bomb_finance = () => {
                         <div className={styles.lightText} style={{ marginLeft: "20px" }}>$BOMB</div>
                         <div className={styles.lightText}> {roundAndFormatNumber(bombCirculatingSupply, 2)}</div>
                         <div className={styles.lightText}> {roundAndFormatNumber(bombTotalSupply, 2)}</div>
-                        <div className={styles.lightText}>${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'}</div>
+                        <div className={styles.lightText} style={{ marginLeft: "26px" }}>${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} <br /> {bombPriceInBNB ? bombPriceInBNB : '-.----'} BTC</div>
                         <div className={styles.lightText}> <Button
                             onClick={() => {
                                 bombFinance.watchAssetInMetamask('BOMB');
@@ -94,7 +99,7 @@ const Bomb_finance = () => {
                         <div className={styles.lightText} style={{ marginLeft: "23px" }}>$BSHARE</div>
                         <div className={styles.lightText} style={{ marginLeft: "39px" }}> {roundAndFormatNumber(bShareCirculatingSupply, 2)}</div>
                         <div className={styles.lightText} style={{ marginLeft: "39px" }}> {roundAndFormatNumber(bShareTotalSupply, 2)}</div>
-                        <div className={styles.lightText} style={{ marginLeft: "39px" }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'}</div>
+                        <div className={styles.lightText} style={{ marginLeft: "39px" }}>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} <br />{bSharePriceInBNB ? bSharePriceInBNB : '-.----'} BNB </div>
                         <div className={styles.lightText} style={{ marginLeft: "39px" }}> <Button onClick={() => {
                             bombFinance.watchAssetInMetamask('BSHARE');
                         }} ><img src="/metamask.png" alt="" /></Button> </div>
@@ -107,7 +112,7 @@ const Bomb_finance = () => {
                         <div className={styles.lightText} style={{ marginLeft: "20px" }}>$BBOND</div>
                         <div className={styles.lightText}> {roundAndFormatNumber(tBondCirculatingSupply, 2)}</div>
                         <div className={styles.lightText}> {roundAndFormatNumber(tBondTotalSupply, 2)}</div>
-                        <div className={styles.lightText}> ${tBondPriceInDollars ? tBondPriceInDollars : '-.--'} </div>
+                        <div className={styles.lightText}> ${tBondPriceInDollars ? tBondPriceInDollars : '-.--'} <br /> {tBondPriceInBNB ? tBondPriceInBNB : '-.----'} BTC </div>
                         <div className={styles.lightText}> <Button onClick={() => {
                             bombFinance.watchAssetInMetamask('BBOND');
                         }} ><img src="/metamask.png" alt="" /></Button> </div>
