@@ -17,19 +17,23 @@ import useStakeToBoardroom from '../../../hooks/useStakeToBoardroom';
 import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 import useRedeemOnBoardroom from '../../../hooks/useRedeemOnBoardroom';
 import styles from '../dashboard.module.css'
-import { AddIcon, RemoveIcon } from '../../../components/icons';
-import IconButton from '../../../components/IconButton';
+import useTotalStakedOnBoardroom from '../../../hooks/useTotalStakedOnBoardroom';
+import useFetchBoardroomAPR from '../../../hooks/useFetchBoardroomAPR';
+import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
 
 const Boardroom_news = () => {
     const stakedBalance = useStakedBalanceOnBoardroom();
     const bombStats = useBombStats();
     const earnings = useEarningsOnBoardroom();
+    const boardroomAPR = useFetchBoardroomAPR();
     const canClaimReward = useClaimRewardCheck();
+    const totalStaked = useTotalStakedOnBoardroom();
     const tokenPriceInDollars = useMemo(
         () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
         [bombStats],
     );
     const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+    console.log(earnedInDollars);
     const { onRedeem } = useRedeemOnBoardroom();
     const canWithdraw = useWithdrawCheck();
     const { onReward } = useHarvestFromBoardroom();
@@ -38,7 +42,14 @@ const Boardroom_news = () => {
     const tokenBalance = useTokenBalance(bombFinance.BSHARE);
     const { onStake } = useStakeToBoardroom();
     const { onWithdraw } = useWithdrawFromBoardroom();
-    const canWithdrawFromBoardroom = useWithdrawCheck();
+    const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('BSHARE', bombFinance.BSHARE);
+    const tokenPriceInDollars2 = useMemo(
+        () =>
+            stakedTokenPriceInDollars
+                ? (Number(stakedTokenPriceInDollars) * Number(getDisplayBalance(stakedBalance))).toFixed(2).toString()
+                : null,
+        [stakedTokenPriceInDollars, stakedBalance],
+    );
 
     const [onPresentDeposit, onDismissDeposit] = useModal(
         <DepositModal
@@ -68,8 +79,8 @@ const Boardroom_news = () => {
                 <a href="" className={styles.link}>Read Investment Strategy <img style={{ marginLeft: "5px" }} src="/arrow.png" alt="" /></a>
                 <button className={styles.investBtn}> <span style={{ color: "white", fontSize: "24px" }}> Invest Now </span></button>
                 <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-                    <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/discord.png" alt="" /> <span className={styles.heading2} >Chat on Discord</span> </button>
-                    <button className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/docs.png" alt="" /> <span className={styles.heading2}>Read Docs</span>  </button>
+                    <button onClick={() => { window.open('http://discord.bomb.money/', '_blank'); }} className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/discord.png" alt="" /> <span className={styles.heading2} >Chat on Discord</span> </button>
+                    <button onClick={() => { window.open('https://docs.bomb.money/welcome-start-here/readme', '_blank'); }} className={styles.btn2}> <img style={{ marginBottom: "-5px" }} src="/docs.png" alt="" /> <span className={styles.heading2}>Read Docs</span>  </button>
                 </div>
                 <div className={styles.boardRoom} style={{ display: "flex", flexDirection: "column" }}>
                     <div className={styles.boardRoomDiv1} style={{ display: "flex", flexDirection: "row" }}>
@@ -88,7 +99,7 @@ const Boardroom_news = () => {
                                     Stake BSHARE and earn BOMB every epoch
                                 </div>
                                 <div style={{ marginLeft: "194px" }}>
-                                    TVL: $1,008,430    {/* *******************TO BE DONE************ */}
+                                    TVL: $1,008,430
                                 </div>
                             </div>
                             <hr style={{ width: "100%" }} />
@@ -96,14 +107,14 @@ const Boardroom_news = () => {
                     </div>
 
                     <div className={styles.boardRoomDiv2}>
-                        <div style={{ paddingLeft: "79%", marginTop: "25px" }}>Total Staked:7232</div> {/* *******************TO BE DONE************ */}
+                        <div style={{ paddingLeft: "68%", marginTop: "25px" }}>Total Staked: <img src="/img2.png" alt="" /> {getDisplayBalance(totalStaked)}</div>
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
                                 <div>
-                                    Daily Returns                       {/* *******************TO BE DONE************ */}
+                                    Daily Returns
                                 </div>
                                 <div>
-                                    2 %
+                                    {boardroomAPR.toFixed(2)}%
                                 </div>
                             </div>
                             <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
@@ -111,10 +122,10 @@ const Boardroom_news = () => {
                                     Your Stake
                                 </div>
                                 <div>
-                                    {getDisplayBalance(stakedBalance)}
+                                <img src="/img2.png" alt="" /> {getDisplayBalance(stakedBalance)}
                                 </div>
                                 <div>
-                                    {`≈ $${tokenPriceInDollars}`}
+                                    {`≈ $${tokenPriceInDollars2}`}
                                 </div>
                             </div>
                             <div className={styles.smallDiv} style={{ display: "flex", flexDirection: "column" }}>
@@ -122,7 +133,7 @@ const Boardroom_news = () => {
                                     Earned:
                                 </div>
                                 <div>
-                                    {getDisplayBalance(earnings)}
+                                <img src="/img1.png" alt="" /> {getDisplayBalance(earnings)}
                                 </div>
                                 <div>
                                     {`≈ $${earnedInDollars}`}
@@ -139,7 +150,7 @@ const Boardroom_news = () => {
 
                                     <button
                                         disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
-                                        onClick={onRedeem}
+                                        onClick={onPresentWithdraw}
                                         className={styles.p1_btn} style={{ marginLeft: "30px" }}>
                                         Withdraw
                                     </button>
@@ -149,7 +160,7 @@ const Boardroom_news = () => {
                                         onClick={onReward}
                                         disabled={earnings.eq(0) || !canClaimReward}
                                         className={styles.p2_btn}>
-                                        Claim Rewards
+                                        Claim Rewards <img src="/img2.png" alt="" />
                                     </button>
                                 </div>
                             </div>

@@ -13,6 +13,7 @@ import useTotalValueLocked from '../../../hooks/useTotalValueLocked';
 import useCashPriceInEstimatedTWAP from '../../../hooks/useCashPriceInEstimatedTWAP';
 import useTreasuryAllocationTimes from '../../../hooks/useTreasuryAllocationTimes';
 import ProgressCountdown from '../../Boardroom/components/ProgressCountdown';
+import useCashPriceInLastTWAP from '../../../hooks/useCashPriceInLastTWAP';
 
 
 const Bomb_finance = () => {
@@ -26,6 +27,8 @@ const Bomb_finance = () => {
     const tBondStats = useBondStats();
     const bombFinance = useBombFinance();
     const bombStats = useBombStats();
+    const cashPrice = useCashPriceInLastTWAP();
+    const bondScale = (Number(cashPrice) / 100000000000000).toFixed(4); 
 
     const bombPriceInDollars = useMemo(
         () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
@@ -136,8 +139,7 @@ const Bomb_finance = () => {
 
                         </div>
                         <div style={{ fontSize: "14px", margin: "2px" }}>
-                            {/* *******************TO BE DONE************ */}
-                            <span style={{ color: "#FFFFFF" }}>Last Epoch TWAP:  </span>  <span className={styles.text} >{scalingFactor} BTC</span>
+                            <span style={{ color: "#FFFFFF" }}>Last Epoch TWAP:  </span>  <span className={styles.text} >{bondScale || '-'} BTC</span>
                         </div>
                     </div>
 

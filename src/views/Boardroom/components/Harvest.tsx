@@ -19,6 +19,7 @@ const Harvest: React.FC = () => {
   const bombStats = useBombStats();
   const {onReward} = useHarvestFromBoardroom();
   const earnings = useEarningsOnBoardroom();
+  
   const canClaimReward = useClaimRewardCheck();
 
   const tokenPriceInDollars = useMemo(
@@ -27,6 +28,8 @@ const Harvest: React.FC = () => {
   );
 
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+  console.log(earnedInDollars);
+
 
   const {from, to} = useClaimRewardTimerBoardroom();
 

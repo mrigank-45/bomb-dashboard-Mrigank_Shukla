@@ -128,8 +128,8 @@ const Bomb_farms = () => {
                         </div>
                     </div>
                     <div>
-                        <button className={styles.p1_btn} style={{ marginLeft: "608px" }}>
-                            Claim All
+                        <button className={styles.p1_btn} style={{ marginLeft: "608px" }} onClick={() => { onReward1(); onReward2(); }}>
+                            Claim All <img src="/img2.png" alt="" />
                         </button>
 
                     </div>
@@ -170,7 +170,7 @@ const Bomb_farms = () => {
                                 Your Stake
                             </div>
                             <div>
-                                {getDisplayBalance(stakedBalance1, bank1.depositToken.decimal)}
+                                <img src="/img1.png" alt="" /> {getDisplayBalance(stakedBalance1, bank1.depositToken.decimal)}
                             </div>
                             <div>
                                 {`≈ $${earnedInDollars1}`}
@@ -181,7 +181,7 @@ const Bomb_farms = () => {
                                 Earned:
                             </div>
                             <div>
-                                {getDisplayBalance(earnings1)}
+                                <img src="/img2.png" alt="" /> {getDisplayBalance(earnings1)}
                             </div>
                             <div>
                                 {`≈ $${earnedInDollars1}`}
@@ -197,7 +197,7 @@ const Bomb_farms = () => {
                                 </button>
                                 <button className={styles.p1_btn} style={{ marginLeft: "30px", width: "135px" }} onClick={onReward1}
                                     disabled={earnings1.eq(0)}>
-                                    Claim Rewards
+                                    Claim Rewards <img src="/img2.png" alt="" />
                                 </button>
                             </div>
 
@@ -239,7 +239,7 @@ const Bomb_farms = () => {
                                 Your Stake
                             </div>
                             <div>
-                                {getDisplayBalance(stakedBalance2, bank2.depositToken.decimal)}
+                                <img src="/img1.png" alt="" />{getDisplayBalance(stakedBalance2, bank2.depositToken.decimal)}
                             </div>
                             <div>
                                 {`≈ $${earnedInDollars2}`}
@@ -250,7 +250,7 @@ const Bomb_farms = () => {
                                 Earned:
                             </div>
                             <div>
-                                {getDisplayBalance(earnings2)}
+                                <img src="/img2.png" alt="" /> {getDisplayBalance(earnings2)}
                             </div>
                             <div>
                                 {`≈ $${earnedInDollars2}`}
@@ -266,7 +266,7 @@ const Bomb_farms = () => {
                                 </button>
                                 <button className={styles.p1_btn} style={{ marginLeft: "30px", width: "135px" }} onClick={onReward2}
                                     disabled={earnings2.eq(0)}>
-                                    Claim Rewards
+                                    Claim Rewards <img src="/img2.png" alt="" />
                                 </button>
                             </div>
                         </div>
