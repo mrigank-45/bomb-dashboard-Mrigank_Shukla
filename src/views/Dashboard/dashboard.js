@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import Bomb_finance from './components/Bomb_finance';
 import Boardroom_news from './components/Boardroom_news';
 import Bomb_farms from './components/Bomb_farms';
-import Bbond from './components/Bbond';
+import Bbond from './components/Bbond.tsx';
 import HomeImage from '../../assets/img/background.jpg';
 const BackgroundImage = createGlobalStyle`
   body {
@@ -14,7 +14,7 @@ const BackgroundImage = createGlobalStyle`
     background-color: #171923;
   }
 `;
-
+ 
 const Dashboard = () => {
 
 
