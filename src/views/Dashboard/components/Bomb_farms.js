@@ -47,7 +47,8 @@ const Bomb_farms = () => {
     const earnedInDollars1 = (Number(tokenPriceInDollars1) * Number(getDisplayBalance(earnings1))).toFixed(2);
     const earnedInDollars2 = (Number(tokenPriceInDollars2) * Number(getDisplayBalance(earnings2))).toFixed(2);
 
-    // const [approveStatus, approve] = useApprove(bank.depositToken, bank.address);
+    const [approveStatus1, approve1] = useApprove(bank1.depositToken, bank1.address);
+    const [approveStatus2, approve2] = useApprove(bank2.depositToken, bank2.address);
 
     // const { color: themeColor } = useContext(ThemeContext);
     const tokenBalance1 = useTokenBalance(bank1.depositToken);
@@ -189,9 +190,19 @@ const Bomb_farms = () => {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
                             <div style={{ display: "flex", flexDirection: "row" }} className={styles.btnDiv}>
-                                <button className={styles.p1_btn} onClick={onPresentDeposit1}>
-                                    Deposit
-                                </button>
+                                {approveStatus1 !== ApprovalState.APPROVED ? (
+                                    <button className={styles.p1_btn} onClick={approve1} disabled={
+                                        bank1.closedForStaking ||
+                                        approveStatus1 === ApprovalState.PENDING ||
+                                        approveStatus1 === ApprovalState.UNKNOWN
+                                    }>
+                                        Approve
+                                    </button>
+                                ) : (
+                                    <button className={styles.p1_btn} onClick={onPresentDeposit1}>
+                                        Deposit
+                                    </button>
+                                )}
                                 <button className={styles.p1_btn} style={{ marginLeft: "30px" }} onClick={onPresentWithdraw1}>
                                     Withdraw
                                 </button>
@@ -258,9 +269,19 @@ const Bomb_farms = () => {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
                             <div style={{ display: "flex", flexDirection: "row" }} className={styles.btnDiv}>
-                                <button className={styles.p1_btn} onClick={onPresentDeposit2}>
-                                    Deposit
-                                </button>
+                                {approveStatus2 !== ApprovalState.APPROVED ? (
+                                    <button className={styles.p1_btn} onClick={approve2} disabled={
+                                        bank2.closedForStaking ||
+                                        approveStatus2 === ApprovalState.PENDING ||
+                                        approveStatus2 === ApprovalState.UNKNOWN
+                                    }>
+                                        Approve
+                                    </button>
+                                ) : (
+                                    <button className={styles.p1_btn} onClick={onPresentDeposit2}>
+                                        Deposit
+                                    </button>
+                                )}
                                 <button className={styles.p1_btn} style={{ marginLeft: "30px" }} onClick={onPresentWithdraw2}>
                                     Withdraw
                                 </button>

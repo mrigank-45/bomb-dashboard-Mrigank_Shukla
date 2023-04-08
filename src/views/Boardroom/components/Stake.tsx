@@ -33,7 +33,7 @@ import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 const Stake: React.FC = () => {
   const bombFinance = useBombFinance();
   const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
-
+  console.log(bombFinance,approve);
   const tokenBalance = useTokenBalance(bombFinance.BSHARE);
   const stakedBalance = useStakedBalanceOnBoardroom();
   const {from, to} = useUnstakeTimerBoardroom();

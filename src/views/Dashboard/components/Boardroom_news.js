@@ -24,6 +24,7 @@ import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDo
 import useTotalValueLocked from '../../../hooks/useTotalValueLocked';
 
 const Boardroom_news = () => {
+    
     const TVL = useTotalValueLocked();
     const stakedBalance = useStakedBalanceOnBoardroom();
     const bombStats = useBombStats();
@@ -36,12 +37,12 @@ const Boardroom_news = () => {
         [bombStats],
     );
     const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
-    console.log(earnedInDollars);
     const { onRedeem } = useRedeemOnBoardroom();
     const canWithdraw = useWithdrawCheck();
     const { onReward } = useHarvestFromBoardroom();
     const bombFinance = useBombFinance();
     const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
+    console.log(bombFinance,approve);
     const tokenBalance = useTokenBalance(bombFinance.BSHARE);
     const { onStake } = useStakeToBoardroom();
     const { onWithdraw } = useWithdrawFromBoardroom();
@@ -102,7 +103,7 @@ const Boardroom_news = () => {
                                     Stake BSHARE and earn BOMB every epoch
                                 </div>
                                 <div style={{ marginLeft: "194px" }}>
-                                    TVL: <span className={styles.text}><CountUp className={styles.text} end={TVL} separator="," prefix="$" /></span> 
+                                    TVL: <span className={styles.text}><CountUp className={styles.text} end={TVL} separator="," prefix="$" /></span>
                                 </div>
                             </div>
                             <hr style={{ width: "100%" }} />
@@ -125,7 +126,7 @@ const Boardroom_news = () => {
                                     Your Stake
                                 </div>
                                 <div>
-                                <img src="/img2.png" alt="" /> {getDisplayBalance(stakedBalance)}
+                                    <img src="/img2.png" alt="" /> {getDisplayBalance(stakedBalance)}
                                 </div>
                                 <div>
                                     {`≈ $${tokenPriceInDollars2}`}
@@ -136,7 +137,7 @@ const Boardroom_news = () => {
                                     Earned:
                                 </div>
                                 <div>
-                                <img src="/img1.png" alt="" /> {getDisplayBalance(earnings)}
+                                    <img src="/img1.png" alt="" /> {getDisplayBalance(earnings)}
                                 </div>
                                 <div>
                                     {`≈ $${earnedInDollars}`}
@@ -144,13 +145,21 @@ const Boardroom_news = () => {
                             </div>
                             <div style={{ display: "flex", flexDirection: "column" }} className={styles.div4}>
                                 <div style={{ display: "flex", flexDirection: "row" }}>
-                                    <button
-                                        onClick={onPresentDeposit}
-                                        disabled={approveStatus !== ApprovalState.APPROVED}
-                                        className={styles.p1_btn}>
-                                        Deposit
-                                    </button>
-
+                                    {approveStatus !== ApprovalState.APPROVED ? (
+                                        <button
+                                            onClick={approve}
+                                            // disabled={approveStatus !== ApprovalState.NOT_APPROVED}
+                                            className={styles.p1_btn}>
+                                            Approve
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={onPresentDeposit}
+                                            disabled={approveStatus !== ApprovalState.APPROVED}
+                                            className={styles.p1_btn}>
+                                            Deposit
+                                        </button>
+                                    )}
                                     <button
                                         disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
                                         onClick={onPresentWithdraw}

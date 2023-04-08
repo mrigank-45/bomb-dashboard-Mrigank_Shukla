@@ -11,18 +11,19 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN } from '../../../bomb-finance/constants';
-
-
+import useApprove, { ApprovalState } from '../../../hooks/useApprove';
+import useCatchError from '../../../hooks/useCatchError';
 
 const Bbond = () => {
 
     const bombFinance = useBombFinance();
+    const catchError = useCatchError();
     const addTransaction = useTransactionAdder();
     const bondStat = useBondStats();
     const cashPrice = useCashPriceInLastTWAP();
     const bondsPurchasable = useBondsPurchasable();
     const bondBalance = useTokenBalance(bombFinance?.BBOND);
- 
+
     const handleBuyBonds = useCallback(
         async (amount: string) => {
             const tx = await bombFinance.buyBonds(amount);
@@ -43,6 +44,10 @@ const Bbond = () => {
     const isBondRedeemable = useMemo(() => cashPrice.gt(BOND_REDEEM_PRICE_BN), [cashPrice]);
     const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInFtm) < 1.01, [bondStat]);
     const balance = useTokenBalance(bombFinance.BOMB);
+    const {
+        contracts: { Treasury },
+    } = useBombFinance();
+    const [approveStatus, approve] = useApprove(bombFinance.BOMB, Treasury.address);
 
     const [onPresent1, onDismiss1] = useModal(
         <ExchangeModal
@@ -129,9 +134,15 @@ const Bbond = () => {
                         </div>
 
                         <div>
-                            <button onClick={onPresent1} className={styles.p1_btn} style={{ marginLeft: "30px" }} disabled={!bondStat || isBondRedeemable || !isBondPurchasable}>
-                                Purchase
-                            </button>
+                            {approveStatus !== ApprovalState.APPROVED ? (
+                                <button onClick={() => catchError(approve(), `Unable to approve`)} className={styles.p1_btn} style={{ marginLeft: "30px" }} disabled={approveStatus === ApprovalState.PENDING || approveStatus === ApprovalState.UNKNOWN}>
+                                    Approve
+                                </button>
+                            ) : (
+                                <button onClick={onPresent1} className={styles.p1_btn} style={{ marginLeft: "30px" }} disabled={!bondStat || isBondRedeemable || !isBondPurchasable}>
+                                    Purchase
+                                </button>
+                            )}
 
                         </div>
 
@@ -144,7 +155,7 @@ const Bbond = () => {
                         </div>
 
                         <div>
-                            <button onClick={onPresent2} className={styles.p1_btn} style={{ marginLeft: "30px" }}  disabled={!bondStat || bondBalance.eq(0) || !isBondRedeemable}>
+                            <button onClick={onPresent2} className={styles.p1_btn} style={{ marginLeft: "30px" }} disabled={!bondStat || bondBalance.eq(0) || !isBondRedeemable}>
                                 Redeem
                             </button>
                         </div>

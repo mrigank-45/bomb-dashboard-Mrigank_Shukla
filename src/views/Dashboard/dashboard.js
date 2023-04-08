@@ -8,6 +8,9 @@ import Bomb_farms from './components/Bomb_farms';
 import Bbond from './components/Bbond.tsx';
 import HomeImage from '../../assets/img/background.jpg';
 import Loader from '../../components/Loader';
+import { Helmet } from 'react-helmet';
+import Page from '../../components/Page';
+import Nav from '../../components/Nav';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
@@ -21,14 +24,18 @@ const Dashboard = () => {
 
     return (
         <>
-                <div className={styles.outerDiv}>
-                    <BackgroundImage />
-                    <Bomb_finance />
-                    <Boardroom_news />
-                    <Bomb_farms />
-                    <Bbond />
-                </div>
-            
+            <Nav />
+            <Helmet>
+                <title>'bomb.money | Dashboard'</title>
+            </Helmet>
+
+            <div className={styles.outerDiv}>
+                <BackgroundImage />
+                <Bomb_finance />
+                <Boardroom_news />
+                <Bomb_farms />
+                <Bbond />
+            </div>
         </>
     );
 };
